@@ -1,0 +1,205 @@
+body {
+    background-color: #DFDFE4;
+    height: 100%;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+a {
+    color: black;
+    text-decoration: none; /* no underline */
+}
+.main{
+    height: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+#preventArticleClick{
+    position: absolute; 
+    left: 0; 
+    width: 
+    80%; 
+    height: 100%; 
+    top: 20%; 
+    opacity: 0.01; 
+    background-color: #ffffff;
+}
+.newsMain{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    padding: 10px; 
+    margin: 10px;
+}
+.newsThumbnails{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.newsThumbnail{
+    background-color: #eeeef3;
+    width: 20%;
+    margin: 2px;
+    background-size: cover;
+    background-position: center;
+    height: 8em;
+    box-shadow: 0 3px 10px 0 rgba(181,181,181,1);
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.newsThumbnailActive{
+    border: #dba01d solid 2px;
+    margin-top: 0px;
+}
+.newsContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* min-height: 90%; */
+    flex: 1;
+}
+.newsTitle{
+    width: 100%;    
+    text-align: center;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    margin-top: 20px;
+    font-weight: 600;
+}
+.newsContent{
+    width: 100%; 
+    flex: 1; 
+}
+.newsFooter{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.newsPublishTime{
+    width: 45%;
+    text-align: right;  
+    margin: 0.5em;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.logo{
+    width: 3em;
+    margin-left: 0.5em;
+    margin-bottom: 0.2em;
+}
+
+.extrasMain{
+    display: flex;
+    flex-direction: column;
+    flex: 0.8;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+/* Clock */
+.extrasClock{
+    background-color: #ffffff;
+    padding: 10px;
+    height: 5em;
+}
+#time {
+    margin-top: 0px; 
+    text-align: center;
+    font-family: arial; 
+    font-size: 3.2em; 
+    color: #111111
+}
+#date {
+    margin-top: 7px; 
+    font-family: arial; 
+    font-size: 0.9em; 
+    color: #111111;
+    text-align: center; 
+}
+
+/* SL */
+.extrasSL{
+    background-color: #ffffff;
+    padding: 10px;
+    height: 5em;
+    margin-top: 10px;
+    text-align: center;
+}
+.extrasSLContent{
+    position: absolute; 
+    top: 10px; 
+    left: 10px; 
+    width: 80%; 
+    height: 100%; 
+    visibility: hidden; 
+    text-align: center; 
+    background-color: #DFDFE4; 
+    margin-right: 10px;
+}
+.extrasSLCloseButton{
+    position: absolute; 
+    left: 620px; 
+    top: 125px;
+    font-size: 1.8em;
+    padding: 10px;
+    background-color: #855;
+    color: #fff;
+    border-radius: 10px
+} 
+.extraSLButton{
+    height: 4em;
+    border-radius: 10px;
+    border: #333333 solid 1px;
+}
+
+.aptusAgeraSlFrame{
+    margin-top: 30px;
+    width: 290px; 
+    height: 845px;
+}
+
+/* Weather */
+.extrasWeather{
+    background-color: #ffffff;
+    padding: 10px;
+    flex: 1;
+    margin-top: 10px;
+    overflow: hidden
+}
+#preventWeatherClick{
+    position: absolute; 
+    top: 22%; 
+    z-index: 500;
+    width: 100%; 
+    height: 100%; 
+    background-color: #ffffff; 
+    opacity: 0.01; 
+}
+
+/* Separate title page */
+.extrasTitleBody{
+    background-color: #333333;
+    color: #FBFBFB;
+    line-height: 1.45;
+    margin: 17px;
+}
+.extrasTitleHeader{
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: #dba01d solid 2px;
+}
+
+/* Class used in WordPress */
+.aligncenter{
+    text-align: center;
+}
+.has-text-align-center{
+    text-align: center;
+}

@@ -1,0 +1,119 @@
+.header{
+    position: relative; 
+    top: 10px; 
+    left: 5px; 
+    width: 280px; 
+    height: 110px; 
+    /*
+    background-color: #2b9ad4; 
+    background-color: #666666; 
+    background-color: #333333; 
+    */
+    padding: 10px;
+    /* background: rgb(85,85,85); */
+    /* background: linear-gradient(90deg, rgba(85,85,85,1) 0%, rgba(51,51,51,1) 35%, rgba(17,17,17,1) 100%); */
+}
+.timesHideShadow{
+    position: absolute;
+    top: 125px;
+    left: 0px;
+    margin: 5px;
+    width: 280px;
+    padding-top: 20px;
+    height: 10px;
+    background-color: #ffffff;
+}
+
+.timesBg{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    margin: 5px;
+    width: 280px;
+    padding-top: 0px;
+    height: 837px;
+    background-color: #ffffff;        
+}
+
+#time {
+    position: absolute; 
+    top: 15px; 
+    left: 55px; 
+    font-family: arial; 
+    font-size: 2.8em; 
+    color: #ffffff
+}
+#date {
+    position: absolute; 
+    top: 70px; 
+    left: 0px; 
+    width: 280px;
+    font-family: arial; 
+    font-size: 1.2em; 
+    color: #ffffff;
+    text-align: center;        
+}
+table {
+    border: 0px;
+    border-spacing: 0px;
+    margin-top: 15px;
+    margin-left: 10px;
+}
+td {
+    font-family: arial;
+    font-size: 1.0em;
+    font-weight: lighter;
+    margin: 0px;
+    padding: 2px;
+}
+th {
+    font-family: arial;
+    font-size: 1.1em;
+    text-align: left;
+    margin: 15px;
+}
+.lineNr{
+    width: 35px;
+    max-width: 35px;
+}
+.noLine{
+    font-size: 0.7em;
+    font-style: italic;
+}    
+.destination {
+    width: 190px;
+    max-width: 175px;
+}
+.displayTime {
+    width: 60px;
+    max-width: 60px;
+}
+.delayIcon {
+    font-size: 1em;
+    color: #ff0000;
+    font-weight: 800;
+}
+.delayText {
+    font-size: 0.9em;
+    color: #555555;
+    width: 280px;
+    padding-top: 5px;
+    font-family: arial; 
+    padding-left: 10px;
+}
+tr:nth-child(even){
+    background: #eeeeee
+}
+.disclaimer {
+    position: absolute;
+    top: 785px;
+    font-size: 0.7em;
+    font-family: arial; 
+    position: absolute;
+    left: 12px;
+    font-style: italic;
+}
+button {
+    margin-left: 63px;
+}
+

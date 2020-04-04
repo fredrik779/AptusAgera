@@ -1,0 +1,241 @@
+
+05:03:37pm
+/SL.php
+Referer: http://localhost:8000/index.php
+activationFile OK. Ny fil
+
+05:03:49pm
+/SL.php
+Referer: http://localhost:8000/index.php
+activationFile OK. <2.1 min
+
+05:03:54pm
+/SL.php
+Referer: http://localhost:8000/index.php
+activationFile OK. <2.1 min
+
+05:04:00pm
+/SL.php
+Referer: http://localhost:8000/index.php
+activationFile OK. <2.1 min
+
+05:10:19pm
+/SL.php
+Referer: http://localhost:8000/index.php
+activationFile vänta (6.7 min)
+---Pause
+
+05:10:37pm
+/SL.php
+Referer: http://localhost:8000/index.php
+activationFile vänta (7 min)
+---Pause
+
+05:10:38pm
+/SL.php?aktivering=1
+Referer: http://localhost:8000/SL.php
+activationFile OK. Manuellt
+
+05:10:40pm
+/SL.php
+Referer: http://localhost:8000/index.php
+activationFile OK. <2.1 min
+
+05:10:45pm
+/SL.php
+Referer: http://localhost:8000/index.php
+activationFile OK. <2.1 min
+
+05:21:52pm
+/SL.php
+Referer: http://localhost:8000/index.php
+activationFile vänta (11.233333333333 min)
+---Pause
+
+05:22:02pm
+/SL.php?aktivering=1
+Referer: http://localhost:8000/SL.php
+activationFile OK. Manuellt
+
+05:22:20pm
+/SL.php?aktivering=1
+Referer: http://localhost:8000/index.php
+activationFile OK. <2.1 min
+
+05:22:50pm
+/SL.php?i=3
+Referer: http://localhost:8000/SL.php?aktivering=1
+activationFile OK. <2.1 min
+
+05:23:20pm
+/SL.php?i=2
+Referer: http://localhost:8000/SL.php?i=3
+activationFile OK. <2.1 min
+
+05:23:50pm
+/SL.php?i=1
+Referer: http://localhost:8000/SL.php?i=2
+activationFile OK. <2.1 min
+
+05:24:21pm
+/SL.php?i=0
+Referer: http://localhost:8000/SL.php?i=1
+activationFile vänta (2.3166666666667 min)
+---Pause
+
+05:52:21pm
+/SL.php?aktivering=1
+Referer: http://localhost:8000/index.php
+activationFile OK. >15 min
+
+05:52:28pm
+/SL.php?aktivering=1
+Referer: http://localhost:8000/index.php
+activationFile OK. <2.1 min
+
+05:52:32pm
+/SL.php?aktivering=1
+Referer: http://localhost:8000/index.php
+activationFile OK. <2.1 min
+
+05:52:55pm
+/SL.php?aktivering=1
+Referer: http://localhost:8000/index.php
+activationFile OK. <2.1 min
+
+05:53:26pm
+/SL.php?aktivering=1
+Referer: http://localhost:8000/index.php
+activationFile OK. <2.1 min
+
+05:53:29pm
+/SL.php?aktivering=1
+Referer: http://localhost:8000/index.php
+activationFile OK. <2.1 min
+
+05:53:30pm
+/SL.php?aktivering=1
+Referer: http://localhost:8000/index.php
+activationFile OK. <2.1 min
+
+05:53:36pm
+/SL.php?aktivering=1
+Referer: http://localhost:8000/index.php
+activationFile OK. <2.1 min
+
+05:53:38pm
+/SL.php?aktivering=1
+Referer: http://localhost:8000/index.php
+activationFile OK. <2.1 min
+
+05:53:41pm
+/SL.php?aktivering=1
+Referer: http://localhost:8000/index.php
+activationFile OK. <2.1 min
+
+05:54:11pm
+/SL.php?i=3
+Referer: http://localhost:8000/SL.php?aktivering=1
+activationFile OK. <2.1 min
+
+05:54:41pm
+/SL.php?i=2
+Referer: http://localhost:8000/SL.php?i=3
+activationFile vänta (2.3333333333333 min)
+---Pause
+
+05:55:35pm
+/SL.php?aktivering=1
+Referer: http://localhost:8000/index.php
+activationFile OK. Manuellt
+
+05:55:40pm
+/SL.php?aktivering=1
+Referer: http://localhost:8000/index.php
+activationFile OK. <2.1 min
+
+05:55:55pm
+/SL.php?aktivering=1
+Referer: http://localhost:8000/index.php
+activationFile OK. <2.1 min
+
+05:56:25pm
+/SL.php?i=3
+Referer: http://localhost:8000/SL.php?aktivering=1
+activationFile OK. <2.1 min
+
+05:56:55pm
+/SL.php?i=2
+Referer: http://localhost:8000/SL.php?i=3
+activationFile OK. <2.1 min
+
+05:57:25pm
+/SL.php?i=1
+Referer: http://localhost:8000/SL.php?i=2
+activationFile OK. <2.1 min
+
+05:57:55pm
+/SL.php?i=0
+Referer: http://localhost:8000/SL.php?i=1
+activationFile vänta (2.3333333333333 min)
+---Pause
+
+05:58:35pm
+/SL.php?aktivering=1
+Referer: http://localhost:8000/index.php
+activationFile OK. Manuellt
+
+05:58:46pm
+/SL.php?aktivering=1
+Referer: http://localhost:8000/index.php
+activationFile OK. <2.1 min
+
+05:58:54pm
+/SL.php?aktivering=1
+Referer: http://localhost:8000/index.php
+activationFile OK. <2.1 min
+
+05:59:08pm
+/SL.php?aktivering=1
+Referer: http://localhost:8000/index.php
+activationFile OK. <2.1 min
+
+06:30:56pm
+/SL.php?aktivering=1
+Referer: http://localhost:8000/index.php
+activationFile OK. >15 min
+
+06:55:43pm
+/SL.php?aktivering=1
+Referer: http://localhost:8000/index.php
+activationFile OK. >15 min
+
+06:55:46pm
+/SL.php?aktivering=1
+Referer: http://localhost:8000/index.php
+activationFile OK. <2.1 min
+
+07:00:45pm
+/SL.php?aktivering=1
+Referer: http://localhost:8000/index.php
+activationFile OK. Manuellt
+
+07:00:48pm
+/SL.php?aktivering=1
+Referer: http://localhost:8000/index.php
+activationFile OK. <2.1 min
+
+07:58:56pm
+/SL.php?aktivering=1
+Referer: http://localhost:8000/index.php
+activationFile OK. >15 min
+
+07:59:01pm
+/SL.php?aktivering=1
+Referer: http://localhost:8000/index.php
+activationFile OK. <2.1 min
+
+08:19:26pm
+/SL.php?aktivering=1
+Referer: http://localhost:8000/index.php
+activationFile OK. >15 min
