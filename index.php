@@ -55,12 +55,12 @@
     <div class="newsMain">
         <div class="newsThumbnails">
             <?php
-            $imgUrl = "";
 
             foreach ($rssArticles->getElementsByTagName('item') as $node) {
                 $title = $node->getElementsByTagName('title')->item(0)->nodeValue;
                 $link = $node->getElementsByTagName('link')->item(0)->nodeValue;
                 $desc = $node->getElementsByTagName('encoded')->item(0)->nodeValue;
+                $imgUrl = "";
 
                 if ($loadThumbnailFromRssFeed){
                     $doc = new DOMDocument();
