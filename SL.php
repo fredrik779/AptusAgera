@@ -6,15 +6,15 @@
  <body>
     
 <?php
-$maxRefreshesDefault = 4;     // Max antal omladdningar av sidan innan "Visa avgångar" visas
-$refreshTime         = 30;    // Antal sekunder tills att listan laddas om
-$minutesOkLongRange  = 15;    // Antal minuter då refresh-tiden resettas, dvs då kan sidan laddas igen
-$logLevel            = 4;     // 0 till 5
+$ini = parse_ini_file('app.ini');
+$extrasSLAutoCloseTime     = $ini['extrasSLAutoCloseTime'];
+$maxRefreshesDefault       = $ini['maxRefreshesDefault'];   // Max antal omladdningar av sidan innan "Visa avgångar" visas
+$refreshTime               = $ini['refreshTime'];           // Antal sekunder tills att listan laddas om
+$minutesOkLongRange        = $ini['minutesOkLongRange'];    // Antal minuter då refresh-tiden resettas, dvs då kan sidan laddas igen
+$logLevel                  = $ini['logLevel'];              // 0 till 5
 
-// Godkända IP-adresser
 $allowedIps          = array("213.112.52.206", "83.251.241.161", "213.112.62.218");
 $enableIpRestriction = false; // Tavlan verkar byta IP-adress ofta
-
 $minutesOkShortRange = $maxRefreshesDefault * ($refreshTime / 60) + 0.1;
 $activationFile = "log/SL_aktivering_" . date("Y.m") . ".txt";
 
@@ -126,12 +126,10 @@ function cmp($a, $b){
 
 ?>
 
-<p class="timesHideShadow"></p>
-<p class="timesBg paperShadow cornerBottomLeft cornerBottomRight">
 <?php 
 
 if ($maxRefreshes < 0 || $activationFileOk == 0){
-    print_r("<br><br><a href='" . basename($_SERVER['PHP_SELF']) . "?aktivering=1'><button class='myButton'><br><img style=''src='img/SL_logo.PNG'><br><br>Visa avgångar<br>&nbsp;</button></a>");
+    print_r("<div class='updateButtonContainer'><a href='" . basename($_SERVER['PHP_SELF']) . "?aktivering=1'><button class='myButton'><br><br><br>Uppdatera<br>&nbsp;</button></a></div>");
     printLog($logLevel, 2, "---Pause");
     exit("");
 }
@@ -255,7 +253,7 @@ uppdateraTider();
 
 ?>
 
-<span class="disclaimer">Avgångar närmaste 60 min enl. realtidsinfo från SL.<br>Uppdateras <?php echo $maxRefreshesDefault ?> ggr med <?php echo $refreshTime ?> s intervall och går sedan i viloläge. </span>
+<span class="disclaimer">Avgångar närmaste 60 min enl. realtidsinfo från SL.<br>Uppdateras <?php echo $maxRefreshesDefault ?> ggr med <?php echo $refreshTime ?> s intervall och går sedan i viloläge. Stängs efter <?php echo $extrasSLAutoCloseTime ?> s</span>
 
 </body>
 </html>
