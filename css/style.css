@@ -1,5 +1,5 @@
 body {
-    background-color: #DFDFE4;
+    background-color: #333333;
     height: 100%;
     text-decoration: none;
     font-family: Arial, Helvetica, sans-serif;
@@ -30,7 +30,6 @@ a {
     flex-direction: column;
     background-color: #ffffff;
     padding: 10px; 
-    margin: 10px;
 }
 .newsThumbnails{
     width: 100%;
@@ -55,7 +54,6 @@ a {
     margin-top: 0px;
 }
 .newsContainer{
-    width: 100%;
     display: flex;
     flex-direction: column;
     /* min-height: 90%; */
@@ -70,25 +68,25 @@ a {
     font-weight: 600;
 }
 .newsContent{
-    width: 100%; 
     flex: 1; 
+    margin-left: 30px;
+    margin-right: 30px;
 }
 .newsFooter{
-    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-left: 30px;
+    margin-right: 30px;
 }
 .newsPublishTime{
     width: 45%;
     text-align: right;  
-    margin: 0.5em;
     margin-top: auto;
     margin-bottom: auto;
 }
 .logo{
     width: 3em;
-    margin-left: 0.5em;
     margin-bottom: 0.2em;
 }
 
@@ -96,14 +94,10 @@ a {
     display: flex;
     flex-direction: column;
     flex: 0.8;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-right: 10px;
 }
 
 /* Clock */
 .extrasClock{
-    background-color: #ffffff;
     padding: 10px;
     height: 5em;
 }
@@ -112,63 +106,71 @@ a {
     text-align: center;
     font-family: arial; 
     font-size: 3.2em; 
-    color: #111111
+    color: #eeeeee
 }
 #date {
-    margin-top: 7px; 
+    margin-top: 1px; 
     font-family: arial; 
-    font-size: 0.9em; 
-    color: #111111;
+    font-size: 1.4em; 
+    color: #eeeeee;
     text-align: center; 
 }
 
 /* SL */
 .extrasSL{
-    background-color: #ffffff;
     padding: 10px;
     height: 5em;
     margin-top: 10px;
     text-align: center;
+    color: #eeeeee;
 }
 .extrasSLContent{
     position: absolute; 
-    top: 10px; 
-    left: 10px; 
-    width: 80%; 
+    top: 0px; 
+    left: 0px; 
+    width: 82%; 
     height: 100%; 
     visibility: hidden; 
     text-align: center; 
-    background-color: #DFDFE4; 
+    background-color: #333333; 
     margin-right: 10px;
 }
 .extrasSLCloseButton{
     position: absolute; 
-    left: 620px; 
-    top: 125px;
+    left: 680px; 
+    top: 123px;
     font-size: 1.8em;
     padding: 10px;
     background-color: #855;
     color: #fff;
-    border-radius: 10px
+    border-radius: 10px;
 } 
 .extraSLButton{
     height: 4em;
     border-radius: 10px;
     border: #333333 solid 1px;
 }
-
+.extraSLLoading{
+    position: absolute;
+    top: 190px;
+    left: 680px;
+    width: 100px;
+    height: 100px;
+    visibility: hidden;
+}
 .aptusAgeraSlFrame{
-    margin-top: 30px;
-    width: 290px; 
-    height: 845px;
+    margin-top: 20px;
+    width: 490px; 
+    height: 980px;
+    border: 0px;
+    visibility: hidden;
 }
 
 /* Weather */
 .extrasWeather{
-    background-color: #ffffff;
     padding: 10px;
     flex: 1;
-    margin-top: 10px;
+    margin-top: 0px;
     overflow: hidden
 }
 #preventWeatherClick{
@@ -177,8 +179,8 @@ a {
     z-index: 500;
     width: 100%; 
     height: 100%; 
-    background-color: #ffffff; 
-    opacity: 0.01; 
+    background-color: #333333; 
+    opacity: 0.0001; 
 }
 
 /* Separate title page */

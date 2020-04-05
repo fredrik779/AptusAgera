@@ -2,7 +2,7 @@
 <head>
 <link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
-<body class="extrasTitleBody">
+<body class="extrasTitleBody" onClick="location.reload(true);">
 
 <?php
     // Init
