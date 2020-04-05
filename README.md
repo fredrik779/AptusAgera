@@ -3,8 +3,8 @@ Web-program för att visa WordPress-artiklar på en AptusAgera-tavla. Artiklarna
 
 **Starta lokalt**
 1. Installera PHP
-2. Kör 'Start local PHP server'
-3. Kör 'Start local DEV page'
+2. Dubbelklicka på genvägen 'Start local PHP server'
+3. Dubbelklicka på genvägen 'Start local DEV page'
 
 **Brf Kungen 3**
 Mått på den del av tavlan som används för den här sidan:
