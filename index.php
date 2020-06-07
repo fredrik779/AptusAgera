@@ -119,7 +119,7 @@
         </div>
     </div>
     <div class="extrasMain">
-        <div class="extrasClock" onClick="location.reload(true);">
+        <div class="extrasClock" onClick="getElementById('toolsPanel').style.visibility = 'visible'; getElementById('toolsPanel').style.top = '0px';">
             <div id="time"></div>
             <div id="date" ></div>
         </div>
@@ -137,12 +137,42 @@
         </div>
     </div>
 </div>
+<div id="toolsPanel" style="visibility: hidden; top: -500px;">
+    <div class="toolsHeader">
+        <span><b>SERVICEMENY</b></span>
+        <span id="localStorageTestResult"></span>
+    </div>
+    <button class="toolsButtonStatic toolsButton toolsButtonClose" onclick="var panel = getElementById('toolsPanel'); panel.style.visibility = 'hidden'; panel.style.top = '-500px';"> X </button>
+    <button class="toolsButtonStatic toolsButton" onClick="localStorage.setItem('aptusAgeraCacheAge', ''); location.reload(true);">Rensa localStorage cache</button>
+    <button class="toolsButtonStatic toolsButton" onclick="location.reload(true);">Ladda om</button>
+    <button class="toolsButton" onClick="getElementById('toolsFrame').src = '<?php echo $ini['tool1Url'] ?>';"><?php echo $ini['tool1Name'] ?></button>
+    <button class="toolsButton" onClick="getElementById('toolsFrame').src = '<?php echo $ini['tool2Url'] ?>';"><?php echo $ini['tool2Name'] ?></button>
+    <button class="toolsButton" onClick="getElementById('toolsFrame').src = '<?php echo $ini['tool3Url'] ?>';"><?php echo $ini['tool3Name'] ?></button>
+
+    <script>
+        // Check browser support
+        if (typeof(Storage) !== "undefined") {
+            if (localStorage.getItem("aptusAgeraCacheAge") == null || localStorage.getItem("aptusAgeraCacheAge") == ""){
+                document.getElementById("localStorageTestResult").innerHTML = "Cache date (localStorage): (not found)";
+            }else{
+                console.log(parseInt(localStorage.getItem("aptusAgeraCacheAge")))
+                var date = new Date(parseInt(localStorage.getItem("aptusAgeraCacheAge"))); 
+                console.log(date.toString())
+                document.getElementById("localStorageTestResult").innerHTML = "Cache date (localStorage): " + date.toLocaleString();
+            }
+        } else {
+            document.getElementById("localStorageTestResult").innerHTML = "localStorage is NOT supported";
+        }
+    </script>
+    <iframe id="toolsFrame"></iframe>
+</div>
 
 <script>
 var currentArticle = -1;
 var timeout;
 var delay = <?php echo $delay ?>;
 var totalArticles = <?php echo $displayedArticles ?>;
+
 function selectTab(i, totalNr){
     console.log("selectTab(" + i + ", " + totalNr); 
     clearTimeout(timeout);

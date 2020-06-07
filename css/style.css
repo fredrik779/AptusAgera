@@ -14,6 +14,37 @@ a {
     display: flex;
     flex-direction: row;
 }
+#toolsPanel{
+    visibility: hidden; 
+    position: absolute; 
+    left: 0px; 
+    top: 0px; 
+    height: 100%; 
+    width: 100%; 
+    background-color: white;
+}
+.toolsHeader{
+    background-color: #EEEEEE;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;    
+}
+.toolsButton{
+    margin: 20px;
+    padding: 15px;
+    background-color: #EEEEEE;
+}
+.toolsButtonClose{
+    color: red;
+}
+.toolsButtonStatic{
+    background-color: #AAAAAA;
+}
+#toolsFrame{
+    width: 100%; 
+    height: 95%;
+    border-top: solid black 8px
+}
 #preventArticleClick{
     position: absolute; 
     left: 0; 

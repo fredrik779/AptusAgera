@@ -9,6 +9,7 @@ Web-program för att visa WordPress-artiklar på en AptusAgera-tavla. Artiklarna
 **Brf Kungen 3**
 Mått på den del av tavlan som används för den här sidan:
 1000 x 1024
+Sidan är utvecklad för en tavla av typen Aptus Agera. Tavlan körs under Internet Explorer i Windows Vista (!).
 
 **Aktivera browser-cache:**
 Lägg in nedan i filen .htaccess på web-servern
@@ -26,6 +27,11 @@ Lägg in nedan i filen .htaccess på web-servern
 
 </IfModule>
 ```
+
+**Cache av localStorage**
+Aptus-tavlan verkar ignorera browser-cache. För att få till en cache på tavlan har vi gjort en HTML-sida med ett JavaScript som lagrar resultatet från index.php i localStorage.
+För att använda den här cachen, använd sidan indexCached.html
+Det går att rensa cache-tiden via en servicemeny på sidan (tryck på klockan)
 
 **Thumbnails**
 För att WordPress ska skicka med URL till 'featured image' för varje artikel så har följande lagts till i wp-content/themes/neve/functions.php. När WordPress-temat uppdateras är det risk att denna fil skrivs över, då behöver man lägga till nedan igen (lägg till det längst ner i filen).

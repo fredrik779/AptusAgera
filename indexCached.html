@@ -1,0 +1,49 @@
+<html>
+<body>
+
+<script>
+var maxSeconds = 12000;
+
+if (!window.XMLHttpRequest){
+    console.log("The web browser does not support XMLHttpRequest");
+}else{
+    console.log("Init")
+    var cacheAgeStr = localStorage.getItem("aptusAgeraCacheAge");
+    var diff = Date.now() - parseInt(cacheAgeStr);
+    var content = "";
+
+    if (cacheAgeStr != "" && diff < (maxSeconds*1000)){
+        console.log("Cached")
+        content = localStorage.getItem("aptusAgeraCache");    
+        document.open();
+        document.write(content);
+        document.close();
+    }else{
+        console.log("Not cached")
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.open();
+                document.write(xhttp.responseText);
+                document.close();
+
+                // Check browser support
+                if (typeof(Storage) !== "undefined") {
+                    // Store
+                    localStorage.setItem("aptusAgeraCache", xhttp.responseText);
+                    localStorage.setItem("aptusAgeraCacheAge", Date.now());
+                } else {
+                    console.log("No localStorage")
+                    //document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+                }
+            }
+        };
+        // Synchronous (via 'false' as third parameter) call to prevent SCRIPT70 error in IE
+        xhttp.open("GET", "index.php", false);
+        xhttp.send();
+    }
+}
+</script>
+
+</body>
+</html>
