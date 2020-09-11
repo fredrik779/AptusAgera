@@ -13,6 +13,8 @@
     $rss->load($url);
     foreach ($rss->getElementsByTagName('item') as $node) {
         $title = $node->getElementsByTagName('title')->item(0)->nodeValue;
+        // Add a newline when ":" is mentioned
+        $title = str_replace(": ", ": <br>", $title);
     }
 ?>
 
