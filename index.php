@@ -214,7 +214,7 @@ function updateClock() {
     
     // Use separate options, to prevent display of "den": e.g. "mon, den 8 april"
     var optionsDay = { weekday: 'short' };
-    var optionsMon = { month: 'long' };
+    var optionsMon = { month: 'short' };
     //var options = { weekday: 'short', month: 'long', day: 'numeric' };
     document.getElementById('date').innerHTML = today.toLocaleDateString("sv-SE", optionsDay) + " " + dayNr + " " + today.toLocaleDateString("sv-SE", optionsMon);
     var t = setTimeout(updateClock, 5000);
