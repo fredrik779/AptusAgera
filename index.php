@@ -12,7 +12,8 @@
     $extrasSLUrl               = $ini['extrasSLUrl'];
     $extrasSLAutoCloseTime     = $ini['extrasSLAutoCloseTime'];
     $excludedCategories        = $ini['excludedCategories'];
-    $delay                     = $ini['delay'];
+    $delay                     = $ini['delayMs'];
+    $delaySelected             = $ini['delayMsSelected'];
     $loadThumbnailFromRssFeed  = $ini['loadThumbnailFromRssFeed'];
     $i = 0;
 
@@ -83,10 +84,18 @@
                     }
                 }
 
-                print "<div class='newsThumbnail' style='background-image: " . $imgUrl . ";' id='thumbnail" . $i . "' onClick='selectTab($i, $displayedArticles);'></div>";
+                print "<div class='newsThumbnail' style='background-image: " . $imgUrl . ";' id='thumbnail" . $i . "' onClick='selectTab($i, $displayedArticles);'>";
+				print "</div>";
                 $i++;
             }
             ?>
+
+			<!-- Progress indicator for slideshow -->
+			<div id='slideshowProgress' class='slideshowProgressVisible'><div style='transition-duration: width <?php echo $ini['delayMsSelected'];?>ms;' id='slideshowProgressWaitProgressMarker'></div></div>
+
+			<!-- Button to resume slideshow -->
+			<div id='slideshowResume' onClick="nextArticle();" class=''>Fortsätt bläddring<div id="slideshowResumeImg"></div></div>
+		
         </div>
         <!-- List each article from RSS feed -->
         <?php
@@ -111,7 +120,7 @@
         ?>
         <!-- An object to cover the articles and prevent clicks -->
         <div id="preventArticleClick"> </div>
-
+		
         <div id="divSLAptus" onclick="toggleSL();" class="extrasSLContent" >
             <img id="idSLLoading" class="extraSLLoading" src="img/loading.gif">
             <button class="extrasSLCloseButton">Stäng</button>
@@ -119,7 +128,7 @@
         </div>
     </div>
     <div class="extrasMain">
-        <div class="extrasClock" onClick="getElementById('toolsPanel').style.visibility = 'visible'; getElementById('toolsPanel').style.top = '0px';">
+        <div class="extrasClock" onClick="showServiceMenu();">
             <div id="time"></div>
             <div id="date" ></div>
         </div>
@@ -142,9 +151,9 @@
         <span><b>SERVICEMENY</b></span>
         <span id="localStorageTestResult"></span>
     </div>
-    <button class="toolsButtonStatic toolsButton toolsButtonClose" onclick="var panel = getElementById('toolsPanel'); panel.style.visibility = 'hidden'; panel.style.top = '-500px';"> X </button>
-    <button class="toolsButtonStatic toolsButton" onClick="localStorage.setItem('aptusAgeraCacheAge', ''); location.reload(true);">Rensa localStorage cache</button>
-    <button class="toolsButtonStatic toolsButton" onclick="location.reload(true);">Ladda om</button>
+    <button class="toolsButtonStatic toolsButton" onclick="hideServiceMenu();">&#9664; Stäng menyn</button>
+    <button class="toolsButtonStatic toolsButton" onClick="localStorage.setItem('aptusAgeraCacheAge', ''); location.reload(true);">&#128465; Tvinga synk med hemsidan</button>
+    <button class="toolsButtonStatic toolsButton" onclick="location.reload(true);">&#11118; Ladda om</button>
     <button class="toolsButton" onClick="getElementById('toolsFrame').src = '<?php echo $ini['tool1Url'] ?>';"><?php echo $ini['tool1Name'] ?></button>
     <button class="toolsButton" onClick="getElementById('toolsFrame').src = '<?php echo $ini['tool2Url'] ?>';"><?php echo $ini['tool2Name'] ?></button>
     <button class="toolsButton" onClick="getElementById('toolsFrame').src = '<?php echo $ini['tool3Url'] ?>';"><?php echo $ini['tool3Name'] ?></button>
@@ -170,38 +179,95 @@
 <script>
 var currentArticle = -1;
 var timeout;
+var timeoutServiceMenu;
 var delay = <?php echo $delay ?>;
+var delaySelected = <?php echo $delaySelected ?>;
 var totalArticles = <?php echo $displayedArticles ?>;
 
 function selectTab(i, totalNr){
-    console.log("selectTab(" + i + ", " + totalNr); 
+    console.log("selectTab(" + i + "/" + totalNr + ")"); 
     clearTimeout(timeout);
+	startSlideshowProgressMarker((delaySelected/1000), i, totalNr);
+	
+	// Show "Play" button
+	document.getElementById("slideshowResume").classList.add("slideshowResumeVisible");
 
     for (id = 0; id < totalNr; id++){
         if (i == id){
-            console.log("SHOW: " + id + ": " + i);
+            //console.log("SHOW: " + id + ": " + i);
             document.getElementById("article" + id).style.display = "flex";
             document.getElementById("thumbnail" + id).classList.add("newsThumbnailActive");
             currentArticle = i;
         }else{
-            console.log("HIDE: " + id + ": " + i);
+            //console.log("HIDE: " + id + ": " + i);
             document.getElementById("article" + id).style.display = "none";
             document.getElementById("thumbnail" + id).classList.remove("newsThumbnailActive");
         }
     }
 
     // Set timer to show next article
-    timeout = setTimeout(nextArticle, delay)
+    timeout = setTimeout(nextArticle, delaySelected)
 }
 
-function nextArticle() {
-   if (currentArticle == (totalArticles - 1)){;
-      selectTab(0, totalArticles);
-   }else{
-      selectTab(currentArticle + 1, totalArticles);
-   }
-   timeout = setTimeout(nextArticle, delay)
+function showServiceMenu(){
+	var panel = document.getElementById('toolsPanel'); 
+	panel.style.visibility = 'visible'; 
+	panel.style.top = '0px';	
+	
+	// Hide the service menu after X ms
+	timeoutServiceMenu = setTimeout(hideServiceMenu, 120000);
 }
+
+function hideServiceMenu(){
+	var panel = document.getElementById('toolsPanel'); 
+	panel.style.visibility = 'hidden'; 
+	panel.style.top = '-1500px';
+}
+
+
+function nextArticle() {
+    console.log("nextArticle()");
+	var i = 0
+    if (currentArticle == (totalArticles - 1)){;
+       selectTab(i, totalArticles);
+    }else{
+		i = currentArticle + 1
+       selectTab(i, totalArticles);
+    }
+    clearTimeout(timeout);
+    timeout = setTimeout(nextArticle, delay)
+
+	resetSlideshowProgressMarker();
+	startSlideshowProgressMarker((delay/1000), i, -1);
+}
+
+function resetSlideshowProgressMarker(){
+	//document.getElementById("slideshowProgress").classList.remove("resumeSlideshowVisible");
+	//document.getElementById("slideshowProgress").classList.add("resumeSlideshowHidden");
+	
+	document.getElementById("slideshowProgressWaitProgressMarker").style.transitionDuration = "0s";
+	document.getElementById("slideshowProgressWaitProgressMarker").style.width = "0px";
+
+	// Hide "Play" button
+	document.getElementById("slideshowResume").classList.remove("slideshowResumeVisible");
+}
+
+function startSlideshowProgressMarker(delay, i, totalNr){
+	resetSlideshowProgressMarker()
+	
+	document.getElementById("slideshowProgress").style.top = document.getElementById("thumbnail" + i).offsetTop;
+	document.getElementById("slideshowProgress").style.left = document.getElementById("thumbnail" + i).offsetLeft;
+
+    //document.getElementById("slideshowProgress").classList.add("resumeSlideshowVisible");
+    //document.getElementById("slideshowProgress").classList.remove("resumeSlideshowHidden");
+
+	document.getElementById("slideshowProgressWaitProgressMarker").style.transitionDuration = "" + delay + "s";
+    document.getElementById("slideshowProgressWaitProgressMarker").style.width = "100%";
+	
+	// Copy the onclick event from the current thumbnail
+	document.getElementById('slideshowProgress').onclick = document.getElementById("thumbnail" + i).onclick;
+}
+
 
 function updateClock() {
     var today = new Date();
@@ -249,6 +315,9 @@ function toggleSL(show){
 // Starta timer och visa första artikeln
 nextArticle();
 updateClock();
+
+// Se till att servicemenyn är stängd. IBLAND har den visats när tavlan väcks
+hideServiceMenu();
 </script>
 
 </body>
