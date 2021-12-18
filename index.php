@@ -23,20 +23,12 @@
     $displayedArticles = 0;
 
     function categoryIsIncluded($categoryObject, $excludedCategories) {
-        if ($categoryObject->item(0)->nodeValue == $excludedCategories){
-            return false;
-        }  
-        if ($categoryObject->item(1)->nodeValue == $excludedCategories){
-            return false;
+        //print $node->nodeValue;
+        foreach($categoryObject as $node) {
+            if ($node->nodeValue == $excludedCategories){
+                return false;
+            }
         }
-        // TODO: Enumerate
-        //foreach ($categoryObject->items as $cat) {
-        //    if ($cat->nodeValue == $excludedCategories){
-        //        print $cat;
-        //        print $cat->nodeValue;
-        //        return false;
-        //    }
-        //}
         return true;
     }
 
