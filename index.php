@@ -12,6 +12,7 @@
     $extrasSLUrl               = $ini['extrasSLUrl'];
     $extrasSLAutoCloseTime     = $ini['extrasSLAutoCloseTime'];
     $excludedCategories        = $ini['excludedCategories'];
+    $interactableCategories    = $ini['interactableCategories'];
     $delay                     = $ini['delayMs'];
     $delaySelected             = $ini['delayMsSelected'];
     $loadThumbnailFromRssFeed  = $ini['loadThumbnailFromRssFeed'];
@@ -22,10 +23,10 @@
     $rss->load($url);
     $displayedArticles = 0;
 
-    function categoryIsIncluded($categoryObject, $excludedCategories) {
-        //print $node->nodeValue;
+    function categoryIsIncluded($categoryObject, $excludedCategoriesLocal) {
         foreach($categoryObject as $node) {
-            if ($node->nodeValue == $excludedCategories){
+            //print $node->nodeValue;
+            if ($node->nodeValue == $excludedCategoriesLocal){
                 return false;
             }
         }
@@ -98,20 +99,26 @@
                 $dateObj = date_create($node->getElementsByTagName('pubDate')->item(0)->nodeValue);
                 $pubDate = date_format($dateObj, "Y-m-d");
                 $desc = $node->getElementsByTagName('encoded')->item(0)->nodeValue;
-                
-                print "<div class='newsContainer' id='article" . $i . "'>";
+
+                $onClick = "";    
+                if (categoryIsIncluded($node->getElementsByTagName('category'), $interactableCategories)){
+                    $onClick = "onClick='event.preventDefault;'";
+                    // An object to cover the articles and prevent clicks
+                    //print "<div class='preventArticleClick'> </div>";
+                }
+                    
+                print "<div class='newsContainer' $onClick id='article" . $i . "'>";
                     print "<div class='newsTitle'>" . $title . "</div>";
                     print "<div class='newsContent'>". $desc ."</div>"; 
                     print "<div class='newsFooter'>";
                         print "<div class='logo'><img class='logo' src='img/Logga.png'></div>"; 
                         print "<div class='newsPublishTime'>Publicerad: ". $pubDate ."</div>"; 
                     print "</div>";
+
                 print "</div>";
                 $i++;
             }
         ?>
-        <!-- An object to cover the articles and prevent clicks -->
-        <div id="preventArticleClick"> </div>
 		
         <div id="divSLAptus" onclick="toggleSL();" class="extrasSLContent" >
             <img id="idSLLoading" class="extraSLLoading" src="img/loading.gif">

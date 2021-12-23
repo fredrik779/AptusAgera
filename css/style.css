@@ -100,7 +100,7 @@ a {
 	transition-timing-function: linear;
 }
 
-#preventArticleClick{
+.preventArticleClick{
     position: absolute; 
     left: 0; 
     width: 
