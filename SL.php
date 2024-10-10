@@ -64,7 +64,7 @@ if (file_exists($activationFile)) {
 
     // Annars inte OK, kräv manuell aktivering
     }else{
-        if ($_GET["aktivering"] == "1"){
+        if (isset($_GET['aktivering']) && $_GET["aktivering"] == "1"){
             // Skapa filen, eftersom användaren har trycka på aktiverings-knappen
             $a_file = fopen($activationFile, 'a') or die('Cannot open file:  '.$activationFile);
             fwrite($a_file, date("Y-m-d h:i:sa") . " Manuellt\n");
@@ -105,7 +105,7 @@ if ($foundIP == 0 && $enableIpRestriction == true){
 }
 
 // Check i to refresh
-if ($_GET["i"] != null){
+if (isset($_GET["i"]) && $_GET["i"] != null){
     $maxRefreshes =  $_GET["i"];
 }else{
     $maxRefreshes = $maxRefreshesDefault;
@@ -144,18 +144,17 @@ print_r("</script>");
 
 
 function uppdateraTider() {
+    // Enable the global variable
+    global $logLevel;
 
-    // Kontakta SL
-    $key = "a885faf1c8fd4ea7a4b793011e9e89ce";
-    
     // 9732 = Trångsund
-    //http://api.sl.se/api2/realtimedeparturesV4.json?key=$key&siteid=9732&timewindow=60
-    
+
     //open connection
     $curl = curl_init();
 
     //set the url, number of POST vars, POST data
-    curl_setopt($curl, CURLOPT_URL, "http://api.sl.se/api2/realtimedeparturesV4.json?key=$key&siteid=9732&timewindow=60");  // Set the url path we want to call
+    curl_setopt($curl, CURLOPT_URL, "https://transport.integration.sl.se/v1/sites/9732/departures?timewindow=60");  // Set the url path we want to call
+    
     curl_setopt($curl,CURLOPT_RETURNTRANSFER,1);
 
     //execute post
@@ -168,38 +167,45 @@ function uppdateraTider() {
     //print_r($json);
 
     // Declare a multi-dimensional array containing all rides in a sorted way
-    // $rides[type][station][direction][id]
     $rides = array(array(array(array())));
-    //$uid = 1;
-    
-    if ($json["StatusCode"] == 0){
+
+    if ($json != null){
 
         // Hämta ev info om förseningar
-        foreach ((array)$json["ResponseData"]["StopPointDeviations"] as $entry => $value) {
-            print_r("<div class='delayText'><span class='delayIcon'>!</span> " . $value[Deviation][Text] . "</div>");
-            //print_r("Försening: " . $json["ResponseData"][StopPointDeviations][$entry][Text] . "<br>");
+        foreach ((array)$json["stop_deviations"] as $deviation) {
+            print_r("<div class='delayText'><span class='delayIcon'>!</span> " . $deviation["message"] . "</div>");
         }
 
-        foreach (array_reverse ((array)$json["ResponseData"]) as $type => $value) {
-
-            foreach ((array)$json["ResponseData"][$type] as $rideId => $value) {
-                if (array_key_exists('LineNumber', (array)$json["ResponseData"][$type][$rideId]) == false){
-                    continue;   
-                }
-
-                $station = $json["ResponseData"][$type][$rideId]["StopAreaName"];
-                $direction = $json["ResponseData"][$type][$rideId]["JourneyDirection"];
-                
-                $uid++;
-                $buffer = "";
-                $buffer .= "<td class='lineNr'>" . $json["ResponseData"][$type][$rideId]["LineNumber"] . "</td>";
-                $buffer .= "<td class='destination'>" . $json["ResponseData"][$type][$rideId]["Destination"] . "</td>";
-                $buffer .= "<td class='displayTime'>" . $json["ResponseData"][$type][$rideId]["DisplayTime"] . "</td>";
-
-                $rides["$type"]["$station"][$direction][$rideId] = $buffer;
+        // Hämta varje avgång
+        $rideId = 0;
+        foreach ($json["departures"] as $departure) {
+            $rideId++;
+            if ($departure['line'] == null || $departure['line']['id'] == null){
+                continue;   
             }
+
+            $station = $departure["stop_area"]["name"];
+            $type = $departure["line"]["transport_mode"];
+            if(isset($departure["line"]["group_of_lines"])){
+                $type = $departure["line"]["group_of_lines"]; 
+            }
+            if ($type == "BUS"){
+                $type = "Buss";
+            }
+            $direction = $departure["direction_code"];
+            
+            $dateTime = new DateTime($departure["expected"]);
+            $time = $dateTime->format('H:i');
+
+            $buffer = "";
+            $buffer .= "<td class='lineNr'>" . $departure['line']['id'] . "</td>";
+            $buffer .= "<td class='destination'>" . $departure['destination'] . "</td>";
+            $buffer .= "<td class='displayTime'>" . $time . "</td>";
+
+            $rides["$type"]["$station"][$direction][$rideId] = $buffer;
         }
 
+        // Visa upp all hämtad info i ordnad form
         foreach ((array)$rides as $type => $value) {
             foreach ((array)$rides[$type] as $station => $value) {
                 
@@ -212,16 +218,8 @@ function uppdateraTider() {
                         continue;
                     }
 
-                    if ($json["ResponseData"][$type][$station]["GroupOfLine"] == ""){
-                        if ($type == "Buses"){
-                            $typeDisplay = "Buss";
-                        }else{
-                            $typeDisplay = "Pendeltåg";
-                        }
-                    }
-                    
                     print_r("<table>");
-                    print_r("<tr><th colspan='3'><img src='img/$type.png'> $station ($typeDisplay)");
+                    print_r("<tr><th colspan='3'><img src='img/$type.png'> $station ($type)");
                     $nr = 1;
                 
                     foreach ((array)$value as $id => $value) {
